@@ -1,0 +1,45 @@
+{
+  "name": "gulp-ava",
+  "version": "0.0.0",
+  "description": "Run AVA tests",
+  "license": "MIT",
+  "repository": "sindresorhus/gulp-ava",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "xo && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpplugin",
+    "ava",
+    "test",
+    "runner",
+    "concurrent",
+    "parallel",
+    "fast",
+    "tape",
+    "tap",
+    "mocha",
+    "qunit",
+    "jasmine"
+  ],
+  "dependencies": {
+    "ava": "^0.1.0",
+    "gulp-util": "^3.0.6",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "hooker": "^0.2.3",
+    "vinyl-file": "^1.2.1",
+    "xo": "*"
+  }
+}
