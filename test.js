@@ -11,14 +11,13 @@ test(function (t) {
 	var stream = ava();
 
 	hooker.hook(gutil, 'log', function (str) {
-			str = [].join.call(arguments, ' ');
+		str = [].join.call(arguments, ' ');
 
-			if (/1 test passed/.test(str)) {
-				hooker.unhook(gutil, 'log');
-				t.pass();
-			}
+		if (/1 test passed/.test(str)) {
+			hooker.unhook(gutil, 'log');
+			t.pass();
 		}
-	);
+	});
 
 	stream.on('error', t.error.bind(t));
 	stream.write(vinylFile.readSync('fixture.js'));
