@@ -1,9 +1,8 @@
 'use strict';
-var path = require('path');
 var childProcess = require('child_process');
 var gutil = require('gulp-util');
 var through = require('through2');
-var BIN = path.join(__dirname, 'node_modules', '.bin', 'ava');
+var BIN = require.resolve('ava/cli.js');
 
 module.exports = function () {
 	return through.obj(function (file, enc, cb) {
