@@ -22,7 +22,7 @@ module.exports = function () {
 
 		cb(null, file);
 	}, function () {
-		childProcess.execFile(BIN, files.concat(['--color']), function (err, stdout, stderr) {
+		childProcess.execFile(BIN, files.concat('--color'), function (err, stdout, stderr) {
 			if (err) {
 				this.emit('error', new gutil.PluginError('gulp-ava', stderr));
 				return;

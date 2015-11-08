@@ -1,19 +1,16 @@
-'use strict';
-var test = require('ava');
-var vinylFile = require('vinyl-file');
-var hooker = require('hooker');
-var gutil = require('gulp-util');
-var ava = require('./');
+import test from 'ava';
+import vinylFile from 'vinyl-file';
+import hooker from 'hooker';
+import gutil from 'gulp-util';
+import fn from './';
 
-test(function (t) {
+test(t => {
 	t.plan(1);
 
-	var stream = ava();
+	const stream = fn();
 
-	hooker.hook(gutil, 'log', function (str) {
-		str = [].join.call(arguments, ' ');
-
-		if (/2 tests passed/.test(str)) {
+	hooker.hook(gutil, 'log', (...args) => {
+		if (/2 tests passed/.test(args.join(' '))) {
 			hooker.unhook(gutil, 'log');
 			t.pass();
 		}

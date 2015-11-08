@@ -13,11 +13,13 @@ $ npm install --save-dev gulp-ava
 ## Usage
 
 ```js
-var gulp = require('gulp');
-var ava = require('gulp-ava');
+const gulp = require('gulp');
+const ava = require('gulp-ava');
 
-gulp.task('default', function () {
-	return gulp.src('test.js').pipe(ava());
+gulp.task('default', () => {
+	return gulp.src('test.js')
+		// gulp-ava needs filepaths so you can't have any plugins before it
+		.pipe(ava());
 });
 ```
 
