@@ -5,6 +5,8 @@ var through = require('through2');
 var BIN = require.resolve('ava/cli.js');
 
 module.exports = function () {
+	var files = [];
+
 	return through.obj(function (file, enc, cb) {
 		if (file.isNull()) {
 			cb(null, file);
@@ -16,14 +18,17 @@ module.exports = function () {
 			return;
 		}
 
-		childProcess.execFile(BIN, [file.path, '--color'], function (err, stdout, stderr) {
+		files.push(file.path);
+
+		cb(null, file);
+	}, function () {
+		childProcess.execFile(BIN, files.concat(['--color']), function (err, stdout, stderr) {
 			if (err) {
-				cb(new gutil.PluginError('gulp-ava', err, {fileName: file.path}));
+				this.emit('error', new gutil.PluginError('gulp-ava', stderr));
 				return;
 			}
 
-			gutil.log('gulp-ava: ' + file.relative + '\n' + stderr);
-			cb(null, file);
-		});
+			gutil.log('gulp-ava:\n' + stderr);
+		}.bind(this));
 	});
 };

@@ -1,6 +1,6 @@
 import test from 'ava';
 
-test('foo', t => {
+test('bar', t => {
 	t.pass();
 	t.end();
 });

@@ -13,7 +13,7 @@ test(function (t) {
 	hooker.hook(gutil, 'log', function (str) {
 		str = [].join.call(arguments, ' ');
 
-		if (/1 test passed/.test(str)) {
+		if (/2 tests passed/.test(str)) {
 			hooker.unhook(gutil, 'log');
 			t.pass();
 		}
@@ -21,5 +21,6 @@ test(function (t) {
 
 	stream.on('error', t.error.bind(t));
 	stream.write(vinylFile.readSync('fixture.js'));
+	stream.write(vinylFile.readSync('fixture2.js'));
 	stream.end();
 });
