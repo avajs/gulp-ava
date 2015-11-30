@@ -4,15 +4,14 @@ import hooker from 'hooker';
 import gutil from 'gulp-util';
 import fn from './';
 
-test(t => {
-	t.plan(1);
-
+test.cb(t => {
 	const stream = fn();
 
 	hooker.hook(gutil, 'log', (...args) => {
 		if (/2 tests passed/.test(args.join(' '))) {
 			hooker.unhook(gutil, 'log');
 			t.pass();
+			t.end();
 		}
 	});
 
