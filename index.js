@@ -1,8 +1,9 @@
-'use strict';
-var childProcess = require('child_process');
+ 'use strict';
 var gutil = require('gulp-util');
 var through = require('through2');
-var BIN = require.resolve('ava/cli.js');
+
+var Api = require('ava/api.js');
+var Verbose = require('ava/lib/reporters/verbose');
 
 module.exports = function () {
 	var files = [];
@@ -22,15 +23,26 @@ module.exports = function () {
 
 		cb(null, file);
 	}, function () {
-		files.unshift(BIN);
+		var api = new Api(files);
+		var reporter = new Verbose();
 
-		childProcess.execFile(process.execPath, files.concat('--color'), function (err, stdout, stderr) {
-			if (err) {
-				this.emit('error', new gutil.PluginError('gulp-ava', stderr));
-				return;
-			}
+		var logs = '';
 
-			gutil.log('gulp-ava:\n' + stderr);
+		reporter.api = api;
+
+		api.on('test', function (test) {
+			logs += '\n' + reporter.test(test);
+		});
+		api.on('error', function (error) {
+			logs += '\n' + reporter.unhandledError(error);
+		});
+
+		api.run().then(function () {
+			logs += '\n' + reporter.finish();
+
+			gutil.log('gulp-ava:\n' + logs);
+		}).catch(function (error) {
+			this.emit('error', new gutil.PluginError('gulp-ava', error));
 		}.bind(this));
 	});
 };
