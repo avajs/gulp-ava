@@ -33,13 +33,13 @@
     "jasmine"
   ],
   "dependencies": {
-    "ava": "^0.7.0",
+    "ava": "^0.9.1",
     "gulp-util": "^3.0.6",
     "through2": "^2.0.0"
   },
   "devDependencies": {
     "hooker": "^0.2.3",
-    "vinyl-file": "^1.2.1",
+    "vinyl-file": "^2.0.0",
     "xo": "*"
   }
 }

@@ -2,13 +2,13 @@ import test from 'ava';
 import vinylFile from 'vinyl-file';
 import hooker from 'hooker';
 import gutil from 'gulp-util';
-import fn from './';
+import m from './';
 
 test.cb(t => {
-	const stream = fn();
+	const stream = m();
 
 	hooker.hook(gutil, 'log', (...args) => {
-		if (/2 tests passed/.test(args.join(' '))) {
+		if (/2 passed/.test(args.join(' '))) {
 			hooker.unhook(gutil, 'log');
 			t.pass();
 			t.end();
