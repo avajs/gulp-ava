@@ -8,7 +8,7 @@ test.cb(t => {
 	const stream = m();
 
 	hooker.hook(gutil, 'log', (...args) => {
-		if (/2 passed/.test(args.join(' '))) {
+		if (/2.*passed/.test(args.join(' '))) {
 			hooker.unhook(gutil, 'log');
 			t.pass();
 			t.end();
