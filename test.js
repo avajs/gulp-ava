@@ -12,6 +12,9 @@ test.cb(t => {
 			hooker.unhook(gutil, 'log');
 			t.pass();
 			t.end();
+		} else {
+			t.fail();
+			t.end();
 		}
 	});
 

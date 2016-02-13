@@ -35,7 +35,9 @@
   "dependencies": {
     "ava": "^0.11.0",
     "gulp-util": "^3.0.6",
-    "through2": "^2.0.0"
+    "through2": "^2.0.0",
+    "extend": "^3.0.0",
+    "pkg-conf": "^1.1.1"
   },
   "devDependencies": {
     "hooker": "^0.2.3",
