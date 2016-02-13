@@ -1,11 +1,15 @@
  'use strict';
 var gutil = require('gulp-util');
 var through = require('through2');
+var extend = require('extend');
+var pkgConf = require('pkg-conf');
 
 var Api = require('ava/api.js');
-var Verbose = require('ava/lib/reporters/verbose');
+var Logger = require('ava/lib/logger');
 
-module.exports = function () {
+var conf = pkgConf.sync('ava');
+
+module.exports = function (options) {
 	var files = [];
 
 	return through.obj(function (file, enc, cb) {
@@ -23,26 +27,43 @@ module.exports = function () {
 
 		cb(null, file);
 	}, function () {
-		var api = new Api(files);
-		var reporter = new Verbose();
+		options = extend({
+			failFast: false,
+			serial: false,
+			require: [],
+			cache: true
+		}, conf, options);
 
-		var logs = '';
-
-		reporter.api = api;
-
-		api.on('test', function (test) {
-			logs += '\n' + reporter.test(test);
+		var api = new Api(files, {
+			failFast: options.failFast,
+			serial: options.serial,
+			require: options.require,
+			cacheEnabled: options.cache !== false
 		});
-		api.on('error', function (error) {
-			logs += '\n' + reporter.unhandledError(error);
-		});
+		var reporter = ({
+			tap: 'ava/lib/reporters/tap',
+			verbose: 'ava/lib/reporters/verbose'
+		})[options.reporter] || 'ava/lib/reporters/mini';
+		var logger = new Logger();
 
-		api.run().then(function () {
-			logs += '\n' + reporter.finish();
+		logger.api = api;
+		logger.use(require(reporter)());
 
-			gutil.log('gulp-ava:\n' + logs);
-		}).catch(function (error) {
-			this.emit('error', new gutil.PluginError('gulp-ava', error));
-		}.bind(this));
+		gutil.log('gulp-ava:');
+		logger.start();
+
+		api.on('test', logger.test);
+		api.on('error', logger.unhandledError);
+
+		api.on('stdout', logger.stdout);
+		api.on('stderr', logger.stderr);
+
+		api.run()
+			.then(function () {
+				logger.finish();
+			})
+			.catch(function (error) {
+				this.emit('error', new gutil.PluginError('gulp-ava', error));
+			}.bind(this));
 	});
 };
