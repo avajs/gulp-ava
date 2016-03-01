@@ -21,7 +21,7 @@ module.exports = function () {
 		files.push(file.path);
 
 		cb(null, file);
-	}, function () {
+	}, function (cb) {
 		files.unshift(BIN);
 
 		childProcess.execFile(process.execPath, files.concat('--color'), function (err, stdout, stderr) {
@@ -32,5 +32,7 @@ module.exports = function () {
 
 			gutil.log('gulp-ava:\n' + stderr);
 		}.bind(this));
+		
+		cb();
 	});
 };
