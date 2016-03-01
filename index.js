@@ -29,10 +29,9 @@ module.exports = function () {
 				this.emit('error', new gutil.PluginError('gulp-ava', stderr));
 				return;
 			}
-
+		
+		        cb();
 			gutil.log('gulp-ava:\n' + stderr);
 		}.bind(this));
-		
-		cb();
 	});
 };
