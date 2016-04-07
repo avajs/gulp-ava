@@ -1,6 +1,6 @@
 # gulp-ava [![Build Status](https://travis-ci.org/sindresorhus/gulp-ava.svg?branch=master)](https://travis-ci.org/sindresorhus/gulp-ava)
 
-> Run [AVA](https://github.com/sindresorhus/ava) tests
+> Run [AVA](https://ava.li) tests
 
 
 ## Install
@@ -16,14 +16,14 @@ $ npm install --save-dev gulp-ava
 const gulp = require('gulp');
 const ava = require('gulp-ava');
 
-gulp.task('default', () => {
-	return gulp.src('test.js')
+gulp.task('default', () =>
+	gulp.src('test.js')
 		// gulp-ava needs filepaths so you can't have any plugins before it
-		.pipe(ava());
-});
+		.pipe(ava())
+);
 ```
 
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
