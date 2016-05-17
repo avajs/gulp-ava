@@ -1,4 +1,4 @@
-# gulp-ava [![Build Status](https://travis-ci.org/sindresorhus/gulp-ava.svg?branch=master)](https://travis-ci.org/sindresorhus/gulp-ava)
+# gulp-ava [![Build Status](https://travis-ci.org/avajs/gulp-ava.svg?branch=master)](https://travis-ci.org/avajs/gulp-ava)
 
 > Run [AVA](https://ava.li) tests
 

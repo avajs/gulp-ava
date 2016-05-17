@@ -3,7 +3,7 @@
   "version": "0.11.0",
   "description": "Run AVA tests",
   "license": "MIT",
-  "repository": "sindresorhus/gulp-ava",
+  "repository": "avajs/gulp-ava",
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
