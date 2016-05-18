@@ -15,8 +15,8 @@ test.cb(t => {
 		}
 	});
 
-	stream.on('error', t.error.bind(t));
+	stream.on('error', err => t.ifError(err));
 	stream.write(vinylFile.readSync('fixture.js'));
-	stream.write(vinylFile.readSync('fixture2.js'));
+	stream.write(vinylFile.readSync('fixture-2.js'));
 	stream.end();
 });
