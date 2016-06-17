@@ -2,6 +2,7 @@
 var childProcess = require('child_process');
 var gutil = require('gulp-util');
 var through = require('through2');
+
 var BIN = require.resolve('ava/cli.js');
 
 module.exports = function () {
@@ -26,7 +27,7 @@ module.exports = function () {
 
 		childProcess.execFile(process.execPath, files.concat('--color'), function (err, stdout, stderr) {
 			if (err) {
-				this.emit('error', new gutil.PluginError('gulp-ava', stderr));
+				this.emit('error', new gutil.PluginError('gulp-ava', stderr || stdout || err));
 				return;
 			}
 

@@ -38,8 +38,14 @@
     "through2": "^2.0.0"
   },
   "devDependencies": {
+    "gulp": "^3.9.1",
     "hooker": "^0.2.3",
     "vinyl-file": "^2.0.0",
     "xo": "*"
+  },
+  "xo": {
+    "rules": {
+      "ava/no-ignored-test-files": "off"
+    }
   }
 }
