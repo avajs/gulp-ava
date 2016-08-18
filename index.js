@@ -3,10 +3,13 @@ var childProcess = require('child_process');
 var gutil = require('gulp-util');
 var through = require('through2');
 var dargs = require('dargs');
+var resolveCwd = require('resolve-cwd');
 
 var BIN = require.resolve('ava/cli.js');
 
 module.exports = function (opts) {
+	opts = opts || {};
+
 	var files = [];
 
 	return through.obj(function (file, enc, cb) {
@@ -24,7 +27,17 @@ module.exports = function (opts) {
 
 		cb(null, file);
 	}, function (cb) {
-		var args = [BIN].concat(files, '--color', dargs(opts || {}));
+		var args = [BIN].concat(files, '--color', dargs(opts, {excludes: ['nyc']}));
+
+		if (opts.nyc) {
+			var nycBin = resolveCwd('nyc/bin/nyc.js');
+
+			if (nycBin) {
+				args.unshift(nycBin);
+			} else {
+				this.emit('error', new gutil.PluginError('gulp-ava', 'Couldn\'t find the `nyc` binary'));
+			}
+		}
 
 		childProcess.execFile(process.execPath, args, function (err, stdout, stderr) {
 			if (err) {
@@ -33,7 +46,7 @@ module.exports = function (opts) {
 			}
 
 			cb();
-			gutil.log('gulp-ava:\n' + stderr);
+			gutil.log('gulp-ava:\n' + stderr + stdout);
 		}.bind(this));
 	});
 };
