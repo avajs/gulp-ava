@@ -19,9 +19,11 @@ const ava = require('gulp-ava');
 gulp.task('default', () =>
 	gulp.src('test.js')
 		// gulp-ava needs filepaths so you can't have any plugins before it
-		.pipe(ava())
+		.pipe(ava({verbose: true}))
 );
 ```
+
+Adheres to AVA [options](https://github.com/avajs/ava#configuration) in package.json. You can also specify options in the plugin as seen above.
 
 
 ## License

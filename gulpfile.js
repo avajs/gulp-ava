@@ -4,5 +4,5 @@ var ava = require('./');
 
 gulp.task('default', function () {
 	return gulp.src('fixture*.js')
-		.pipe(ava());
+		.pipe(ava({verbose: true}));
 });
