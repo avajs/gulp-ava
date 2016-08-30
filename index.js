@@ -42,6 +42,7 @@ module.exports = function (opts) {
 		childProcess.execFile(process.execPath, args, function (err, stdout, stderr) {
 			if (err) {
 				this.emit('error', new gutil.PluginError('gulp-ava', stderr || stdout || err));
+				cb();
 				return;
 			}
 
