@@ -30,7 +30,7 @@ module.exports = function (opts) {
 		var args = [BIN].concat(files, '--color', dargs(opts, {excludes: ['nyc']}));
 
 		if (opts.nyc) {
-			var nycBin = resolveCwd('nyc/bin/nyc.js');
+			var nycBin = opts.nyc === true ? resolveCwd('nyc/bin/nyc.js') : opts.nyc;
 
 			if (nycBin) {
 				args.unshift(nycBin);
