@@ -25,7 +25,7 @@ gulp.task('default', () =>
 
 Adheres to AVA [options](https://github.com/avajs/ava#configuration) in package.json. You can also specify options in the plugin as seen above.
 
-You can specify `nyc: true` in the plugin to run AVA with [`nyc`](https://github.com/istanbuljs/nyc). You must have `nyc` as a devDependency. `nyc` [options](https://github.com/istanbuljs/nyc#configuring-nyc) can be defined in package.json.
+You can specify `nyc: true` in the plugin to run AVA with [`nyc`](https://github.com/istanbuljs/nyc) or `nyc: "path/to/nyc/bin/nyc.js"` to explicitly refer to the `nyc` CLI. You must have `nyc` as a devDependency. `nyc` [options](https://github.com/istanbuljs/nyc#configuring-nyc) can be defined in package.json.
 
 
 ## License
