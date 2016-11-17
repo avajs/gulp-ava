@@ -33,7 +33,7 @@
     "jasmine"
   ],
   "dependencies": {
-    "ava": "^0.16.0",
+    "ava": "^0.17.0",
     "dargs": "^4.1.0",
     "gulp-util": "^3.0.6",
     "resolve-cwd": "^1.0.0",
@@ -42,9 +42,9 @@
   "devDependencies": {
     "gulp": "^3.9.1",
     "hooker": "^0.2.3",
-    "nyc": "^8.1.0",
+    "nyc": "^9.0.1",
     "vinyl-file": "^2.0.0",
-    "xo": "*"
+    "xo": "^0.16.0"
   },
   "xo": {
     "rules": {
