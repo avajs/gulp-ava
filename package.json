@@ -1,6 +1,6 @@
 {
   "name": "gulp-ava",
-  "version": "0.14.1",
+  "version": "0.15.0",
   "description": "Run AVA tests",
   "license": "MIT",
   "repository": "avajs/gulp-ava",
