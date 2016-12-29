@@ -48,6 +48,7 @@ module.exports = function (opts) {
 
 			cb();
 			gutil.log('gulp-ava:\n' + stderr + stdout);
+			this.emit('end');
 		}.bind(this));
 	});
 };
