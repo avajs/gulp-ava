@@ -1,18 +1,18 @@
 'use strict';
-var childProcess = require('child_process');
-var gutil = require('gulp-util');
-var through = require('through2');
-var dargs = require('dargs');
-var resolveCwd = require('resolve-cwd');
+const childProcess = require('child_process');
+const gutil = require('gulp-util');
+const through = require('through2');
+const dargs = require('dargs');
+const resolveCwd = require('resolve-cwd');
 
-var BIN = require.resolve('ava/cli.js');
+const BIN = require.resolve('ava/cli.js');
 
-module.exports = function (opts) {
+module.exports = opts => {
 	opts = opts || {};
 
-	var files = [];
+	const files = [];
 
-	return through.obj(function (file, enc, cb) {
+	return through.obj((file, enc, cb) => {
 		if (file.isNull()) {
 			cb(null, file);
 			return;
@@ -27,10 +27,10 @@ module.exports = function (opts) {
 
 		cb(null, file);
 	}, function (cb) {
-		var args = [BIN].concat(files, '--color', dargs(opts, {excludes: ['nyc']}));
+		const args = [BIN].concat(files, '--color', dargs(opts, {excludes: ['nyc']}));
 
 		if (opts.nyc) {
-			var nycBin = resolveCwd('nyc/bin/nyc.js');
+			const nycBin = resolveCwd('nyc/bin/nyc.js');
 
 			if (nycBin) {
 				args.unshift(nycBin);
@@ -39,7 +39,7 @@ module.exports = function (opts) {
 			}
 		}
 
-		childProcess.execFile(process.execPath, args, function (err, stdout, stderr) {
+		childProcess.execFile(process.execPath, args, (err, stdout, stderr) => {
 			if (err) {
 				this.emit('error', new gutil.PluginError('gulp-ava', stderr || stdout || err));
 				cb();
@@ -47,7 +47,7 @@ module.exports = function (opts) {
 			}
 
 			cb();
-			gutil.log('gulp-ava:\n' + stderr + stdout);
-		}.bind(this));
+			gutil.log(`gulp-ava:\n${stderr}${stdout}`);
+		});
 	});
 };

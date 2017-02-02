@@ -2,7 +2,7 @@ import test from 'ava';
 import vinylFile from 'vinyl-file';
 import hooker from 'hooker';
 import gutil from 'gulp-util';
-import m from './';
+import m from '.';
 
 test.cb(t => {
 	const stream = m();
