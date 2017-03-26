@@ -39,7 +39,7 @@ module.exports = opts => {
 			}
 		}
 
-		childProcess.execFile(process.execPath, args, (err, stdout, stderr) => {
+		childProcess.execFile(process.execPath, args, {maxBuffer: 1024000}, (err, stdout, stderr) => {
 			if (err) {
 				this.emit('error', new gutil.PluginError('gulp-ava', stderr || stdout || err));
 				cb();
