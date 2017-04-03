@@ -8,7 +8,9 @@ const resolveCwd = require('resolve-cwd');
 const BIN = require.resolve('ava/cli.js');
 
 module.exports = opts => {
-	opts = opts || {};
+	opts = Object.assign({
+		silent: false
+	}, opts);
 
 	const files = [];
 
@@ -46,8 +48,11 @@ module.exports = opts => {
 				return;
 			}
 
+			if (!opts.silent) {
+				gutil.log(`gulp-ava:\n${stderr}${stdout}`);
+			}
+
 			cb();
-			gutil.log(`gulp-ava:\n${stderr}${stdout}`);
 		});
 	});
 };

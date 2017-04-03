@@ -18,14 +18,33 @@ const ava = require('gulp-ava');
 
 gulp.task('default', () =>
 	gulp.src('test.js')
-		// gulp-ava needs filepaths so you can't have any plugins before it
+		// `gulp-ava` needs filepaths, so you can't have any plugins before it
 		.pipe(ava({verbose: true}))
 );
 ```
 
-Adheres to AVA [options](https://github.com/avajs/ava#configuration) in package.json. You can also specify options in the plugin as seen above.
 
-You can specify `nyc: true` in the plugin to run AVA with [`nyc`](https://github.com/istanbuljs/nyc). You must have `nyc` as a devDependency. `nyc` [options](https://github.com/istanbuljs/nyc#configuring-nyc) can be defined in package.json.
+## API
+
+### ava([options])
+
+This plugin aheres to AVA [options](https://github.com/avajs/ava#configuration) in package.json. You can also specify options in the plugin, as seen above, but prefer the package.json approach whenever possible.
+
+`gulp-ava` specific options:
+
+#### silent
+
+Type: `boolean`<br>
+Default: `false`
+
+Only print output on failure.
+
+#### nyc
+
+Type: `boolean`<br>
+Default: `false`
+
+Run AVA with [`nyc`](https://github.com/istanbuljs/nyc). You must have `nyc` as a devDependency. `nyc` [options](https://github.com/istanbuljs/nyc#configuring-nyc) can be defined in package.json.
 
 
 ## License
