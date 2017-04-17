@@ -7,7 +7,7 @@ import m from '.';
 test.cb(t => {
 	const stream = m();
 
-	hooker.hook(gutil, 'log', (...args) => {
+	hooker.hook(process.stderr, 'write', (...args) => {
 		if (/2.*passed/.test(args.join(' '))) {
 			hooker.unhook(gutil, 'log');
 			t.pass();
@@ -19,6 +19,7 @@ test.cb(t => {
 		t.ifError(err);
 		t.end();
 	});
+
 	stream.write(vinylFile.readSync('fixture.js'));
 	stream.write(vinylFile.readSync('fixture2.js'));
 	stream.end();
