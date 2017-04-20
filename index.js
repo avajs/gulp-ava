@@ -43,7 +43,7 @@ module.exports = opts => {
 			args.unshift(nycBin);
 		}
 
-		const ps = execa(BIN, args, {
+		const ps = execa(process.execPath, args, {
 			// TODO: Remove this when `execa` supports a `buffer: false` option
 			maxBuffer: HUNDRED_MEGABYTES
 		});
