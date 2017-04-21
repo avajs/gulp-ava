@@ -28,7 +28,7 @@ gulp.task('default', () =>
 
 ### ava([options])
 
-This plugin aheres to AVA [options](https://github.com/avajs/ava#configuration) in package.json. You can also specify options in the plugin, as seen above, but prefer the package.json approach whenever possible.
+This plugin adheres to AVA [options](https://github.com/avajs/ava#configuration) in package.json. You can also specify options in the plugin, as seen above, but prefer the package.json approach whenever possible.
 
 `gulp-ava` specific options:
 
