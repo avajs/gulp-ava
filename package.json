@@ -33,17 +33,17 @@
     "jasmine"
   ],
   "dependencies": {
-    "ava": "^0.19.1",
+    "ava": "^0.20.0",
     "dargs": "^5.1.0",
-    "execa": "^0.6.3",
+    "execa": "^0.7.0",
     "gulp-util": "^3.0.6",
-    "resolve-cwd": "^1.0.0",
+    "resolve-cwd": "^2.0.0",
     "through2": "^2.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
     "hooker": "^0.2.3",
-    "nyc": "^10.1.2",
+    "nyc": "^11.0.3",
     "vinyl-file": "^3.0.0",
     "xo": "*"
   },
