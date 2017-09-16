@@ -4,11 +4,18 @@ import hooker from 'hooker';
 import gutil from 'gulp-util';
 import m from '.';
 
-test.cb(t => {
-	const stream = m();
+const passes = [
+	{paths: 'fixture.js:fixture2.js', pass: 2, args: []},
+	{paths: 'fixture4.js', pass: 1, args: [{
+		env: {NODE_ENV: 'foo'}
+	}]}
+];
 
-	hooker.hook(process.stderr, 'write', (...args) => {
-		if (/2.*passed/.test(args.join(' '))) {
+passes.forEach(({paths, pass, args}) => test.cb(t => {
+	const stream = m.apply(null, args);
+
+	hooker.hook(process.stderr, 'write', (...chunks) => {
+		if (RegExp(`${pass} (?:tests? )?passed`).test(chunks.join(' '))) {
 			hooker.unhook(gutil, 'log');
 			t.pass();
 			t.end();
@@ -20,7 +27,8 @@ test.cb(t => {
 		t.end();
 	});
 
-	stream.write(vinylFile.readSync('fixture.js'));
-	stream.write(vinylFile.readSync('fixture2.js'));
+	paths.split(/:/)
+			.forEach(path => stream.write(vinylFile.readSync(path)));
 	stream.end();
-});
+})
+);

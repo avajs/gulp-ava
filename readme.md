@@ -46,6 +46,12 @@ Default: `false`
 
 Run AVA with [`nyc`](https://github.com/istanbuljs/nyc). You must have `nyc` as a devDependency. `nyc` [options](https://github.com/istanbuljs/nyc#configuring-nyc) can be defined in package.json.
 
+#### env
+
+Type: `Object`<br>
+Default: `process.env`
+
+Environment variables for the AVA process. Extends `process.env`.
 
 ## License
 

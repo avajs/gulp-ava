@@ -43,10 +43,12 @@ module.exports = opts => {
 			args.unshift(nycBin);
 		}
 
-		const ps = execa(process.execPath, args, {
+		const execOpts = Object.assign({
 			// TODO: Remove this when `execa` supports a `buffer: false` option
 			maxBuffer: HUNDRED_MEGABYTES
-		});
+		}, opts.env && {env: opts.env});
+
+		const ps = execa(process.execPath, args, execOpts);
 
 		if (!opts.silent) {
 			ps.stdout.pipe(process.stdout);
