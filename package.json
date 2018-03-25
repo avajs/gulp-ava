@@ -1,55 +1,55 @@
 {
-  "name": "gulp-ava",
-  "version": "0.18.0",
-  "description": "Run AVA tests",
-  "license": "MIT",
-  "repository": "avajs/gulp-ava",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava"
-  },
-  "files": [
-    "index.js"
-  ],
-  "keywords": [
-    "gulpplugin",
-    "ava",
-    "test",
-    "runner",
-    "concurrent",
-    "parallel",
-    "fast",
-    "tape",
-    "tap",
-    "mocha",
-    "qunit",
-    "jasmine"
-  ],
-  "dependencies": {
-    "ava": "^0.20.0",
-    "dargs": "^5.1.0",
-    "execa": "^0.7.0",
-    "gulp-util": "^3.0.6",
-    "resolve-cwd": "^2.0.0",
-    "through2": "^2.0.0"
-  },
-  "devDependencies": {
-    "gulp": "^3.9.1",
-    "hooker": "^0.2.3",
-    "nyc": "^11.0.3",
-    "vinyl-file": "^3.0.0",
-    "xo": "*"
-  },
-  "xo": {
-    "rules": {
-      "ava/no-ignored-test-files": "off"
-    }
-  }
+	"name": "gulp-ava",
+	"version": "0.18.0",
+	"description": "Run AVA tests",
+	"license": "MIT",
+	"repository": "avajs/gulp-ava",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=4"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"gulpplugin",
+		"ava",
+		"test",
+		"runner",
+		"concurrent",
+		"parallel",
+		"fast",
+		"tape",
+		"tap",
+		"mocha",
+		"qunit",
+		"jasmine"
+	],
+	"dependencies": {
+		"ava": "^0.25.0",
+		"dargs": "^5.1.0",
+		"execa": "^0.10.0",
+		"gulp-util": "^3.0.6",
+		"resolve-cwd": "^2.0.0",
+		"through2": "^2.0.0"
+	},
+	"devDependencies": {
+		"gulp": "^3.9.1",
+		"hooker": "^0.2.3",
+		"nyc": "^11.0.3",
+		"vinyl-file": "^3.0.0",
+		"xo": "*"
+	},
+	"xo": {
+		"rules": {
+			"ava/no-ignored-test-files": "off"
+		}
+	}
 }
