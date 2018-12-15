@@ -51,8 +51,8 @@ module.exports = options => {
 
 		ps.then(() => {
 			cb();
-		}).catch(error => {
-			cb(new gutil.PluginError('gulp-ava', error));
+		}).catch(() => {
+			cb(new gutil.PluginError('gulp-ava', 'One or more tests failed'));
 		});
 	});
 };
