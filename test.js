@@ -2,12 +2,12 @@ import test from 'ava';
 import vinylFile from 'vinyl-file';
 import hooker from 'hooker';
 import gutil from 'gulp-util';
-import m from '.';
+import ava from '.';
 
-test.cb(t => {
-	const stream = m();
+test.cb('main', t => {
+	const stream = ava();
 
-	hooker.hook(process.stderr, 'write', (...args) => {
+	hooker.hook(process.stdout, 'write', (...args) => {
 		if (/2.*passed/.test(args.join(' '))) {
 			hooker.unhook(gutil, 'log');
 			t.pass();
@@ -15,8 +15,8 @@ test.cb(t => {
 		}
 	});
 
-	stream.on('error', err => {
-		t.ifError(err);
+	stream.on('error', error => {
+		t.ifError(error);
 		t.end();
 	});
 

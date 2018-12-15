@@ -6,12 +6,11 @@ const resolveCwd = require('resolve-cwd');
 const execa = require('execa');
 
 const BIN = require.resolve('ava/cli.js');
-const HUNDRED_MEGABYTES = 1000 * 1000 * 100;
 
-module.exports = opts => {
-	opts = Object.assign({
+module.exports = options => {
+	options = Object.assign({
 		silent: false
-	}, opts);
+	}, options);
 
 	const files = [];
 
@@ -30,9 +29,9 @@ module.exports = opts => {
 
 		cb(null, file);
 	}, cb => {
-		const args = [BIN].concat(files, '--color', dargs(opts, {excludes: ['nyc']}));
+		const args = [BIN].concat(files, '--color', dargs(options, {excludes: ['nyc']}));
 
-		if (opts.nyc) {
+		if (options.nyc) {
 			const nycBin = resolveCwd('nyc/bin/nyc.js');
 
 			if (!nycBin) {
@@ -43,20 +42,17 @@ module.exports = opts => {
 			args.unshift(nycBin);
 		}
 
-		const ps = execa(process.execPath, args, {
-			// TODO: Remove this when `execa` supports a `buffer: false` option
-			maxBuffer: HUNDRED_MEGABYTES
-		});
+		const ps = execa(process.execPath, args, {buffer: false});
 
-		if (!opts.silent) {
+		if (!options.silent) {
 			ps.stdout.pipe(process.stdout);
 			ps.stderr.pipe(process.stderr);
 		}
 
 		ps.then(() => {
 			cb();
-		}).catch(err => {
-			cb(new gutil.PluginError('gulp-ava', err));
+		}).catch(error => {
+			cb(new gutil.PluginError('gulp-ava', error));
 		});
 	});
 };
