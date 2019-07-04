@@ -1,5 +1,5 @@
 'use strict';
-const gutil = require('gulp-util');
+const PluginError = require('plugin-error');
 const through = require('through2');
 const dargs = require('dargs');
 const resolveCwd = require('resolve-cwd');
@@ -21,7 +21,7 @@ module.exports = options => {
 		}
 
 		if (file.isStream()) {
-			cb(new gutil.PluginError('gulp-ava', 'Streaming not supported'));
+			cb(new PluginError('gulp-ava', 'Streaming not supported'));
 			return;
 		}
 
@@ -35,7 +35,7 @@ module.exports = options => {
 			const nycBin = resolveCwd('nyc/bin/nyc.js');
 
 			if (!nycBin) {
-				cb(new gutil.PluginError('gulp-ava', 'Couldn\'t find the `nyc` binary'));
+				cb(new PluginError('gulp-ava', 'Couldn\'t find the `nyc` binary'));
 				return;
 			}
 
@@ -52,7 +52,7 @@ module.exports = options => {
 		ps.then(() => {
 			cb();
 		}).catch(() => {
-			cb(new gutil.PluginError('gulp-ava', 'One or more tests failed'));
+			cb(new PluginError('gulp-ava', 'One or more tests failed'));
 		});
 	});
 };

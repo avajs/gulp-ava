@@ -1,7 +1,7 @@
 import test from 'ava';
 import vinylFile from 'vinyl-file';
 import hooker from 'hooker';
-import gutil from 'gulp-util';
+import log from 'fancy-log';
 import ava from '.';
 
 test.cb('main', t => {
@@ -9,7 +9,7 @@ test.cb('main', t => {
 
 	hooker.hook(process.stdout, 'write', (...args) => {
 		if (/2.*passed/.test(args.join(' '))) {
-			hooker.unhook(gutil, 'log');
+			hooker.unhook(log);
 			t.pass();
 			t.end();
 		}
