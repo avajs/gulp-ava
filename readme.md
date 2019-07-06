@@ -18,7 +18,7 @@ const ava = require('gulp-ava');
 
 gulp.task('default', () =>
 	gulp.src('test.js')
-		// `gulp-ava` needs filepaths, so you can't have any plugins before it
+		// `gulp-ava` needs file paths, so you can't have any plugins before it
 		.pipe(ava({verbose: true}))
 );
 ```
@@ -26,7 +26,7 @@ gulp.task('default', () =>
 
 ## API
 
-### ava([options])
+### ava(options?)
 
 This plugin adheres to AVA [options](https://github.com/avajs/ava#configuration) in package.json. You can also specify options in the plugin, as seen above, but prefer the package.json approach whenever possible.
 
@@ -45,8 +45,3 @@ Type: `boolean`<br>
 Default: `false`
 
 Run AVA with [`nyc`](https://github.com/istanbuljs/nyc). You must have `nyc` as a devDependency. `nyc` [options](https://github.com/istanbuljs/nyc#configuring-nyc) can be defined in package.json.
-
-
-## License
-
-MIT © [Sindre Sorhus](https://sindresorhus.com)
