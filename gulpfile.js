@@ -2,7 +2,7 @@
 const gulp = require('gulp');
 const ava = require('.');
 
-gulp.task('default', () =>
+exports.default = () => (
 	gulp.src('fixture.js')
 		.pipe(ava({
 			verbose: true,

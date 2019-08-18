@@ -48,6 +48,9 @@
 		"vinyl-file": "^3.0.0",
 		"xo": "^0.24.0"
 	},
+	"peerDependencies": {
+		"gulp": ">=4"
+	},
 	"xo": {
 		"rules": {
 			"ava/no-ignored-test-files": "off"

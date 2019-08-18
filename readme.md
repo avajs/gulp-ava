@@ -16,7 +16,7 @@ $ npm install --save-dev gulp-ava
 const gulp = require('gulp');
 const ava = require('gulp-ava');
 
-gulp.task('default', () =>
+exports.default = () => (
 	gulp.src('test.js')
 		// `gulp-ava` needs file paths, so you can't have any plugins before it
 		.pipe(ava({verbose: true}))
