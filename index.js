@@ -53,7 +53,7 @@ module.exports = options => {
 		try {
 			await subprocess;
 			callback();
-		} catch (error) {
+		} catch (_) {
 			callback(new PluginError('gulp-ava', 'One or more tests failed'));
 		}
 	});
