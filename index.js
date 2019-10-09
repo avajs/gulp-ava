@@ -43,7 +43,7 @@ module.exports = options => {
 			args.unshift(nycBin);
 		}
 
-		const subprocess = execa(process.execPath, args, {buffer: false});
+		const subprocess = execa(process.execPath, args, {buffer: true});
 
 		if (!options.silent) {
 			subprocess.stdout.pipe(process.stdout);
