@@ -43,15 +43,26 @@ module.exports = options => {
 			args.unshift(nycBin);
 		}
 
-		const subprocess = execa(process.execPath, args, {buffer: true});
+		const processPromise = execa(process.execPath, args, {buffer: false});
+
+		const closePromise = new Promise((resolve, reject) => {
+			processPromise.on('close', exitCode =>
+				exitCode === 0 ?
+					resolve() :
+					reject());
+		});
 
 		if (!options.silent) {
-			subprocess.stdout.pipe(process.stdout);
-			subprocess.stderr.pipe(process.stderr);
+			processPromise.stdout.pipe(process.stdout);
+			processPromise.stderr.pipe(process.stderr);
 		}
 
 		try {
-			await subprocess;
+			await Promise.race([
+				processPromise,
+				closePromise
+			]);
+
 			callback();
 		} catch (_) {
 			callback(new PluginError('gulp-ava', 'One or more tests failed'));
