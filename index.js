@@ -4,6 +4,7 @@ const through = require('through2');
 const dargs = require('dargs');
 const resolveCwd = require('resolve-cwd');
 const execa = require('execa');
+const fs = require('fs');
 
 const BINARY = require.resolve('ava/cli.js');
 
@@ -48,6 +49,11 @@ module.exports = options => {
 		if (!options.silent) {
 			subprocess.stdout.pipe(process.stdout);
 			subprocess.stderr.pipe(process.stderr);
+		}
+
+		if (options.outputFile) {
+			const fileStream = fs.createWriteStream(options.outputFile);
+			subprocess.stdout.pipe(fileStream);
 		}
 
 		try {
