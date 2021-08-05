@@ -51,9 +51,9 @@ module.exports = options => {
 			subprocess.stderr.pipe(process.stderr);
 		}
 
-		if (options.outputfile) {
-			let filestream = fs.createWriteStream(options.outputfile);
-			subprocess.stdout.pipe(filestream);
+		if (options.outputFile) {
+			const fileStream = fs.createWriteStream(options.outputFile);
+			subprocess.stdout.pipe(fileStream);
 		}
 
 		try {

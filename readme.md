@@ -45,3 +45,10 @@ Type: `boolean`<br>
 Default: `false`
 
 Run AVA with [`nyc`](https://github.com/istanbuljs/nyc). You must have `nyc` as a devDependency. `nyc` [options](https://github.com/istanbuljs/nyc#configuring-nyc) can be defined in package.json.
+
+#### outputFile
+
+Type: `string`<br>
+Default: `undefined`
+
+Store a copy of the stdout of AVA as a file. Example: `tests/output/tapOutput.txt`
